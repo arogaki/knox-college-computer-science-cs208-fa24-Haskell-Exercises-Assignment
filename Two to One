@@ -1,0 +1,14 @@
+module Codewars.G964.Longest where
+import Data.List (sort)
+
+--　Given two strings s1 and s2, return a new sorted string containing distinct letters from both.
+longest :: [Char] -> [Char] -> [Char]
+longest s1 s2 = removeDuplicatesSorted (sort (s1 ++ s2))
+  where
+    -- Function to remove consecutive duplicates from a sorted list
+    removeDuplicatesSorted :: Eq a => [a] -> [a]
+    removeDuplicatesSorted [] = []
+    removeDuplicatesSorted [x] = [x]
+    removeDuplicatesSorted (x:y:xs)
+      | x == y    = removeDuplicatesSorted (y:xs)  -- Skip duplicate
+      | otherwise = x : removeDuplicatesSorted (y:xs)  -- Keep "unique" element
