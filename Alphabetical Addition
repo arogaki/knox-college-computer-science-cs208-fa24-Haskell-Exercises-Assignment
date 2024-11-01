@@ -1,0 +1,36 @@
+module AddingUpLetters (addLetters) where
+
+-- Function to add up a list of lowercase letters and return a single resulting letter
+-- If the list is empty, return 'z'
+-- Letters can overflow, meaning the sum wraps around after 'z'
+addLetters :: [Char] -> Char
+addLetters [] = 'z'  -- Return 'z' if the input list is empty
+addLetters xs = valueToChar sumMod
+  where
+    -- Calculate the sum of the positions of each character in the alphabet
+    sumPositions = sum (map charToValue xs)
+   
+    -- Compute the sum modulo 26
+    sumMod = sumPositions `mod` 26
+   
+    -- Convert a character to its corresponding numerical value a = 1, z = 26
+    charToValue :: Char -> Int
+    charToValue c = findPosition c "abcdefghijklmnopqrstuvwxyz"
+
+-- Find the position of a character in the given string
+    findPosition :: Char -> String -> Int
+    findPosition _ [] = error
+    findPosition target (y:ys)
+      | target == y = 1  
+      | otherwise = 1 + findPosition target ys  
+   
+    -- Convert a numerical value back to its corresponding character
+    -- If the value is 0, it wraps around to 'z'
+    valueToChar :: Int -> Char
+    valueToChar 0 = 'z'
+    valueToChar n = getNthLetter n "abcdefghijklmnopqrstuvwxyz"-- I am tired of typing a bit.
+   
+    -- Retrieve the nth character from the given string
+    getNthLetter :: Int -> String -> Char
+    getNthLetter 1 (y:_) = y  -- Base case
+    getNthLetter n (_:ys) = getNthLetter (n - 1) ys  -- Recursive case
