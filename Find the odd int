@@ -15,7 +15,7 @@ findOdd xs = findOddInUnique (unique xs) xs
 
     -- Function to find the first element in the unique list that has an odd count in the original list
     findOddInUnique :: [Int] -> [Int] -> Int
-    findOddInUnique [] _ = error 
+    findOddInUnique [] _ = error "Invalid"
     findOddInUnique (x:xs) ys
       | odd (count x ys) = x
       | otherwise = findOddInUnique xs ys
