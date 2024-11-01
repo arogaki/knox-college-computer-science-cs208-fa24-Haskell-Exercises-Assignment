@@ -1,0 +1,9 @@
+module Merge where
+
+-- Merge two sorted lists into one sorted list.
+merge :: Ord a => [a] -> [a] -> [a]
+merge [] ys = ys  -- If the first list is empty, return the second list
+merge xs [] = xs  -- If the second list is empty, return the first list
+merge (x:xs) (y:ys)
+  | x <= y    = x : merge xs (y:ys)  -- If x is less than or equal to y, include x and continue merging
+  | otherwise = y : merge (x:xs) ys  -- Otherwise
