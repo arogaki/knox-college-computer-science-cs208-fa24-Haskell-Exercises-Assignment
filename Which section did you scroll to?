@@ -1,0 +1,10 @@
+module Section (section) where
+   
+section :: Int -> [Int] -> Maybe Int
+section scrollY sizes = findSection scrollY sizes 0 0
+  where
+    findSection :: Int -> [Int] -> Int -> Int -> Maybe Int
+    findSection _ [] _ _ = Nothing  -- No more sections to check
+    findSection s (size:rest) idx acc
+      | s < acc + size = Just idx  -- scrollY falls within the current section
+      | otherwise = findSection s rest (idx + 1) (acc + size)  -- Move to the next section
