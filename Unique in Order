@@ -1,0 +1,10 @@
+module UniqueInOrder (uniqueInOrder) where
+
+
+-- Function to remove consecutive duplicate elements from a list
+uniqueInOrder :: Eq a => [a] -> [a]
+uniqueInOrder [] = []  -- When it is an empty list.
+uniqueInOrder [x] = [x]  -- If the list has one element, return that element
+uniqueInOrder (x:y:xs)
+  | x == y    = uniqueInOrder (y:xs)  -- If the current element is the same as the next, skip the current
+  | otherwise = x : uniqueInOrder (y:xs)  -- Otherwise, include the current element and continue processing
