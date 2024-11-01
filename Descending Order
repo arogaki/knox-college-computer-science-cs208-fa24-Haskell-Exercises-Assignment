@@ -1,0 +1,7 @@
+module DescendingOrder where
+import Data.List (sort)
+
+
+-- Define the descendingOrder function
+descendingOrder :: Integer -> Integer
+descendingOrder n = read (reverse (sort (show n))) :: Integer
