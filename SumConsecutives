@@ -1,0 +1,11 @@
+module Codewars.G964.Sumconsec where
+
+sumConsecutives :: [Int] -> [Int]
+sumConsecutives [] = []  -- If the input list is empty, return an empty list
+sumConsecutives (x:xs) = helper x 1 xs  -- Initialize the helper with the first element and a count of 1
+  where
+    helper :: Int -> Int -> [Int] -> [Int]
+    helper current count [] = [current * count]  -- If no more elements, return the accumulated sum
+    helper current count (y:ys)
+      | y == current = helper current (count + 1) ys  -- If the next element is the same, increment the count
+      | otherwise = (current * count) : helper y 1 ys  -- Otherwise, add the sum to the result and reset for the new number
