@@ -1,0 +1,29 @@
+module Codewars.Kata.FindOdd where
+
+
+--   Given a list, find the Int that appears an odd number of times.
+--   The tests will always provide such a number, and the list will
+--   always contain at least one element.
+findOdd :: [Int] -> Int
+findOdd xs = findOddInUnique (unique xs) xs
+  where
+    -- Function to extract unique elements from the list
+    unique :: Eq a => [a] -> [a]
+    unique [] = []
+    unique (x:xs) = x : unique (filter (/= x) xs)
+
+
+    -- Function to find the first element in the unique list that has an odd count in the original list
+    findOddInUnique :: [Int] -> [Int] -> Int
+    findOddInUnique [] _ = error 
+    findOddInUnique (x:xs) ys
+      | odd (count x ys) = x
+      | otherwise = findOddInUnique xs ys
+
+
+    -- Function to count the number of occurrences of a given element in the list
+    count :: Int -> [Int] -> Int
+    count _ [] = 0
+    count n (y:ys)
+      | n == y    = 1 + count n ys
+      | otherwise = count n ys
