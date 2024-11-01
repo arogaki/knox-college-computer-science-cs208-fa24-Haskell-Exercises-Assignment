@@ -1,0 +1,12 @@
+module MissingNumber where
+
+missingNo :: [Int] -> Int
+missingNo xs = totalsum - sum xs
+  where totalsum = (100 * (100 + 1)) `div` 2
+
+
+{- My Memo
+totalSum= n(n+1)/2
+-}
+
+--I have to check the total sum of 1 to 100.
