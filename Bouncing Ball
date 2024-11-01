@@ -1,0 +1,21 @@
+module Codewars.Kata.BouncingBall where
+
+-- Function to calculate the number of times the ball passes the window
+bouncingBall :: Double -> Double -> Double -> Integer
+bouncingBall h bounce window =
+    -- Check if all conditions are valid for the experiment
+    if h > 0 && bounce > 0 && bounce < 1 && window < h
+    -- If conditions are met, start counting bounces
+    then countBounces h bounce window 0
+    -- Otherwise, return -1 indicating an invalid experiment
+    else -1
+
+
+-- Function to count the number of times the ball passes the window
+countBounces :: Double -> Double -> Double -> Integer -> Integer
+countBounces h bounce window count =
+    if h > window
+    -- If the height is above the window, add 2 to count (one for fall, one for bounce)
+    then countBounces (h * bounce) bounce window (count + 2)
+    -- Stop when the height after bouncing is below the window, return count - 1
+    else count - 1
