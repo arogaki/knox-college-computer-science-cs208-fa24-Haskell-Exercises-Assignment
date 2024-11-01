@@ -1,0 +1,8 @@
+module Codewars.G964.Accumule where
+import Data.Char
+
+accum :: [Char] -> [Char]
+accum xs = accum_ xs 1
+
+accum_ (x:xs) i = ((toUpper x) : (replicate (i-1) (toLower x)) ++ (if length xs > 0 then ("-" ++ (accum_ xs (i+1))) else ""))
+
