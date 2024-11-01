@@ -1,0 +1,8 @@
+module Kata where
+
+
+isSortedAndHow :: [Integer] -> String
+isSortedAndHow lst
+    | all (\(x, y) -> x <= y) (zip lst (tail lst)) = "yes, ascending"
+    | all (\(x, y) -> x >= y) (zip lst (tail lst)) = "yes, descending"
+    | otherwise                                   = "no"
