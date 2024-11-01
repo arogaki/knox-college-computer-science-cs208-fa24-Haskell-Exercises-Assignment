@@ -1,0 +1,15 @@
+module Codewars.Kata.DNA where
+import Codewars.Kata.DNA.Types
+
+
+-- data Base = A | T | G | C
+type DNA = [Base]
+
+
+dnaStrand :: DNA -> DNA
+dnaStrand = map swap
+    where swap a
+                | a == A = T
+                | a == T = A
+                | a == G = C
+                | a == C = G
