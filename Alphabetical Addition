@@ -19,7 +19,7 @@ addLetters xs = valueToChar sumMod
 
 -- Find the position of a character in the given string
     findPosition :: Char -> String -> Int
-    findPosition _ [] = error
+    findPosition _ [] = error "Invalid"
     findPosition target (y:ys)
       | target == y = 1  
       | otherwise = 1 + findPosition target ys  
