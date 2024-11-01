@@ -1,0 +1,10 @@
+module Disemvowel where
+
+
+-- Define the disemvowel function
+disemvowel :: String -> String
+disemvowel str = filter (not . isVowel) str
+  where
+    -- Define what constitutes a vowel
+    isVowel :: Char -> Bool
+    isVowel c = c `elem` "aeiouAEIOU"
