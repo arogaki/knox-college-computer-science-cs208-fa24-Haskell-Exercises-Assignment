@@ -1,0 +1,14 @@
+module Codewars.Kata.Which where
+import Data.List
+
+-- Function to find strings from a1 that are substrings of any string in a2
+inArray :: [String] -> [String] -> [String]
+inArray [] _ = []
+-- If a1 is empty, return an empty list
+inArray _ [] = []
+-- Process each string in a1
+inArray (x:xs) ys
+  -- If x is a substring of any string in a2, include it in the result
+  | any (isInfixOf x) ys = sort . nub $ x : inArray xs ys
+  -- Otherwise, skip x and continue processing
+  | otherwise = inArray xs ys
