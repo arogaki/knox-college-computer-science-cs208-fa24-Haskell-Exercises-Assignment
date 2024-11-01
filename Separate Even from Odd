@@ -1,0 +1,22 @@
+module MenBoys where
+import Data.List (nub, sort)
+
+-- Function to separate men (even numbers) from boys (odd numbers)
+-- Returns a list with men sorted in ascending order followed by boys sorted in descending order
+menFromBoys :: [Int] -> [Int]
+menFromBoys xs = sortedEvens ++ sortedOdds
+  where
+    -- Remove duplicate elements from the input list
+    unique = nub xs
+   
+    -- Filter out even numbers (men) from the unique list
+    evens = filter even unique
+   
+    -- Filter out odd numbers (boys) from the unique list
+    odds = filter odd unique
+   
+    -- Sort the even numbers in ascending order
+    sortedEvens = sort evens
+   
+    -- Sort the odd numbers in descending order
+    sortedOdds = reverse (sort odds)
