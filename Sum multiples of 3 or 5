@@ -1,0 +1,7 @@
+module MultiplesOf3And5 where
+
+
+solution :: Integer -> Integer
+solution n = sum $ filter divisible [1..(n-1)]
+  where
+    divisible n = (n `mod` 3 == 0) || (n `mod` 5 == 0)
